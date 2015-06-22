@@ -17,11 +17,6 @@ namespace SortingAlgorithms {
             Random random = new Random();
 
             for (int i = 0; i < NUMBERS_COUNT; i++) {
-                //do {
-                //    randomNumber = random.Next(0, NUMBERS_COUNT);
-                //}
-                //while (array.Contains(randomNumber));
-
                 randomNumber = random.Next(0, NUMBERS_COUNT);
                 array[i] = randomNumber;
             }
