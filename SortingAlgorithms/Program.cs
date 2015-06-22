@@ -5,8 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SortingAlgorithms {
+
     class Program {
+
         static void Main(string[] args) {
+
+
+
+            Console.ReadKey();
         }
     }
 }
