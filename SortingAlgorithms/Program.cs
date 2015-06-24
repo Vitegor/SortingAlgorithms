@@ -10,7 +10,10 @@ namespace SortingAlgorithms {
 
         static void Main(string[] args) {
 
+            int[] array = Sorting.GenerateArrayRandomNumbers();
 
+            Sorting.PrintArray(array);
+            Sorting.PrintArray(array);
 
             Console.ReadKey();
         }

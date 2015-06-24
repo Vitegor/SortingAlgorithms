@@ -8,23 +8,19 @@ namespace SortingAlgorithms {
 
     class Sorting {
 
-        private static int[] GenerateArrayNumbers()
+        public static int[] GenerateArrayRandomNumbers(int numbersCount = 30)
         {
-            const int NUMBERS_COUNT = 30;
-            int[] array = new int[NUMBERS_COUNT];
-
-            int randomNumber = 0;
+            int[] array = new int[numbersCount];
             Random random = new Random();
 
-            for (int i = 0; i < NUMBERS_COUNT; i++) {
-                randomNumber = random.Next(0, NUMBERS_COUNT);
-                array[i] = randomNumber;
+            for (int i = 0; i < numbersCount; i++) {
+                array[i] = random.Next(0, numbersCount); ;
             }
 
             return array;
         }
 
-        private static void PrintArray(int[] array)
+        public static void PrintArray(int[] array)
         {
             foreach (int i in array) {
                 Console.Write("{0} ", i);
