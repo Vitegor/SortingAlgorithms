@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SortingAlgorithms {
 
@@ -10,10 +6,19 @@ namespace SortingAlgorithms {
 
         static void Main(string[] args) {
 
-            int[] array = Sorting.GenerateArrayRandomNumbers();
+            int[] array = Sorting.GenerateArrayRandomNumbers(20);
 
+            Console.WriteLine("Source array:");
             Sorting.PrintArray(array);
-            Sorting.PrintArray(array);
+            Console.WriteLine();
+
+            Console.WriteLine("Selection sort:");
+            Sorting.PrintArray(Sorting.SelectionSort(array));
+            Console.WriteLine();
+
+            Console.WriteLine("Insertion sort:");
+            Sorting.PrintArray(Sorting.InsertionSort(array));
+            Console.WriteLine();
 
             Console.ReadKey();
         }

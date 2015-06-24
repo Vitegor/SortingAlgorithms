@@ -8,29 +8,54 @@ namespace SortingAlgorithms {
 
     class Sorting {
 
-        public static int[] SelectionSort(int[] array)
+        public static int[] InsertionSort(int[] sourceArray)
         {
-            int arrayLength = array.Length;
-            int min = 0;
+            int arrayLength = sourceArray.Length;
 
-            for (int i = 0; i <= arrayLength - 1; i++) {
+            if (arrayLength == 1) { return sourceArray; }
 
-                min = array[i];
-
-                for (int j = i; j <= arrayLength - 1; j++) 
+            for (int i = 1; i <= arrayLength - 1; i++)
+            {
+                for (int j = i - 1; j == 0; j--) 
                 {
-                    if ()
-
-                    if (array[j] < min) 
-                    { 
-                        min = array[j];
-                        array[j] = array[i];
-                        array[i] = min;
+                    while (sourceArray[i] < sourceArray[j]) {
+                        sourceArray[j] = sourceArray[j - 1];
                     }
                 }
             }
 
-            return array;
+            return sourceArray;
+        }
+
+        public static int[] SelectionSort(int[] sourceArray)
+        {
+            int arrayLength = sourceArray.Length;
+            int[] sortedArray = new int[arrayLength];
+
+            for (int i = 0; i <= arrayLength - 1; i++) {
+                sortedArray[i] = sourceArray[i];
+            }
+
+            if (arrayLength == 1) { return sortedArray; }
+
+            int min = 0;
+
+            for (int i = 0; i <= arrayLength - 1; i++) {
+
+                min = sortedArray[i];
+
+                for (int j = i; j <= arrayLength - 1; j++) 
+                {
+                    if (sortedArray[j] < min) 
+                    {
+                        min = sortedArray[j];
+                        sortedArray[j] = sortedArray[i];
+                        sortedArray[i] = min;
+                    }
+                }
+            }
+
+            return sortedArray;
         }
 
         public static int[] GenerateArrayRandomNumbers(int numbersCount = 30)
