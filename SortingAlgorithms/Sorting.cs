@@ -8,6 +8,42 @@ namespace SortingAlgorithms {
 
     class Sorting {
 
+        public static int[] CocktailSort(int[] array)
+        {
+            int arrayLength = array.Length;
+
+            if (arrayLength <= 1) { return array; }
+
+            int left, right;
+
+            for (int i = 0; i < arrayLength / 2; i++) //можно переберать за кол-во итераций, в 2 раза меньше
+            {                                        //целочисленное деление округляет в меньшую сторону
+                left = 0;
+                right = arrayLength - 1;
+
+                do {
+                    /* идем спереди */
+                    if (array[left] > array[left + 1]) 
+                    {
+                        Swap(array, left, left + 1);
+                    }                     
+                    left++;//сдвигаем позицию вперед
+
+
+                    /* идем сзади */
+                    if (array[right - 1] > array[right]) 
+                    {
+                        Swap(array, right - 1, right);
+                    }                 
+                    right--;//сдвигаем позицию назад
+
+                }
+                while (left <= right);// условия усреднения
+            }
+
+            return array;
+        }
+
         public static int[] BubbleSort(int[] array)
         {
             int arrayLength = array.Length;
@@ -22,9 +58,7 @@ namespace SortingAlgorithms {
                 {
                     if (array[j] > array[j + 1]) 
                     {
-                        tmp = array[j];
-                        array[j] = array[j + 1];
-                        array[j + 1] = tmp;
+                        Swap(array, j, j + 1);
                     }    
                 }
             }
@@ -46,7 +80,8 @@ namespace SortingAlgorithms {
 
                 for (int j = i - 1; j >= 0; j--) 
                 {
-                    if (tmp < array[j]) {
+                    if (tmp < array[j]) 
+                    {
                         array[j + 1] = array[j];
                         array[j] = tmp;
                     }
@@ -80,6 +115,14 @@ namespace SortingAlgorithms {
             }
 
             return array;
+        }
+
+        private static void Swap(int[] array, int i, int j)
+        {
+            int tmp;
+            tmp = array[i];
+            array[i] = array[j];
+            array[j] = tmp;
         }
 
         public static int[] GenerateArrayRandomNumbers(int numbersCount = 30)
