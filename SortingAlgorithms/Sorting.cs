@@ -12,33 +12,33 @@ namespace SortingAlgorithms {
         {
             int arrayLength = array.Length;
 
-            if (arrayLength <= 1) { return array; }
+            if (arrayLength > 1) 
+            {
+                int left = 0;
+                int right = arrayLength - 1;
 
-            int left, right;
-
-            for (int i = 0; i < arrayLength / 2; i++) //можно переберать за кол-во итераций, в 2 раза меньше
-            {                                        //целочисленное деление округляет в меньшую сторону
-                left = 0;
-                right = arrayLength - 1;
-
-                do {
-                    /* идем спереди */
-                    if (array[left] > array[left + 1]) 
+                while (left < right) 
+                {
+                    for (int j = left; j < right; j++)
                     {
-                        Swap(array, left, left + 1);
-                    }                     
-                    left++;//сдвигаем позицию вперед
+                        if (array[j] > array[j + 1]) 
+                        {
+                            Swap(array, j, j + 1);
+                        }
+                    }
 
+                    right--;
 
-                    /* идем сзади */
-                    if (array[right - 1] > array[right]) 
+                    for (int j = right; j > left; j--) 
                     {
-                        Swap(array, right - 1, right);
-                    }                 
-                    right--;//сдвигаем позицию назад
+                        if (array[j] < array[j - 1]) 
+                        {
+                            Swap(array, j, j - 1);
+                        }
+                    }
 
+                    left++;
                 }
-                while (left <= right);// условия усреднения
             }
 
             return array;
@@ -49,8 +49,6 @@ namespace SortingAlgorithms {
             int arrayLength = array.Length;
 
             if (arrayLength <= 1) { return array; }
-
-            int tmp = 0;
 
             for (int i = 0; i <= arrayLength - 1; i++) 
             {
@@ -116,6 +114,7 @@ namespace SortingAlgorithms {
 
             return array;
         }
+
 
         private static void Swap(int[] array, int i, int j)
         {
