@@ -8,6 +8,35 @@ namespace SortingAlgorithms {
 
     class Sorting {
 
+        public static int[] MergeSort(int[] array)
+        {
+            int arrayLength = array.Length;
+
+            if (arrayLength > 1) 
+            {
+                int middle = ((arrayLength % 2) != 0) ? (arrayLength / 2 + 1) : (arrayLength / 2);
+                List<int> left = new List<int>();
+                List<int> right = new List<int>();
+                List<int> result = new List<int>();
+
+                for (int i = 0; i < middle; i++) { // Левую половину массива помещаем в left[]
+                    left.Add(array[i]);
+                }
+
+                for (int i = middle; i <= arrayLength - 1; i++) { // Правую половину массива помещаем в right[]
+                    right.Add(array[i]);
+                }
+
+                left = MergeSort(left.ToArray()).ToList();
+                right = MergeSort(right.ToArray()).ToList();
+                result = Merge(left, right);
+
+                return result.ToArray();
+            }
+            
+            return array;       
+        }
+
         public static int[] CocktailSort(int[] array)
         {
             int arrayLength = array.Length;
@@ -116,32 +145,36 @@ namespace SortingAlgorithms {
         }
 
 
+        private static List<int> Merge(List<int> left, List<int> right)
+        {
+            List<int> result = new List<int>();
+
+            while (left.Count() > 0 && right.Count() > 0) 
+            {
+                if (left.First() <= right.First()) 
+                {
+                    result.Add(left.First());
+                    left.RemoveAt(0);
+                }
+                else 
+                {
+                    result.Add(right.First());
+                    right.RemoveAt(0);
+                }
+            }
+
+            if (left.Count() > 0) { result.AddRange(left); }
+            if (right.Count() > 0) { result.AddRange(right); }
+
+            return result;
+        }
+
         private static void Swap(int[] array, int i, int j)
         {
             int tmp;
             tmp = array[i];
             array[i] = array[j];
             array[j] = tmp;
-        }
-
-        public static int[] GenerateArrayRandomNumbers(int numbersCount = 30)
-        {
-            int[] array = new int[numbersCount];
-            Random random = new Random();
-
-            for (int i = 0; i < numbersCount; i++) {
-                array[i] = random.Next(0, numbersCount); ;
-            }
-
-            return array;
-        }
-
-        public static void PrintArray(int[] array)
-        {
-            foreach (int i in array) {
-                Console.Write("{0} ", i);
-            }
-            Console.WriteLine();
         }
     }
 }
