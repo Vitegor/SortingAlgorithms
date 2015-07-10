@@ -14,21 +14,27 @@ namespace SortingAlgorithms {
 
             if (arrayLength > 1) 
             {
-                int middle = ((arrayLength % 2) != 0) ? (arrayLength / 2 + 1) : (arrayLength / 2);
-                List<int> left = new List<int>();
-                List<int> right = new List<int>();
-                List<int> result = new List<int>();
+                int leftLength = ((arrayLength % 2) != 0) ? (arrayLength / 2 + 1) : (arrayLength / 2);
+                int rightLength = ((arrayLength % 2) != 0) ? (leftLength - 1) : (leftLength);
+                int j = 0;
 
-                for (int i = 0; i < middle; i++) { // Левую половину массива помещаем в left[]
-                    left.Add(array[i]);
+                int[] left = new int[leftLength];
+                int[] right = new int[rightLength];
+                int[] result = new int[arrayLength];
+
+                for (int i = 0; i < leftLength; i++)  // Левую половину массива помещаем в left[]
+                { 
+                    left[i] = array[i];
                 }
 
-                for (int i = middle; i <= arrayLength - 1; i++) { // Правую половину массива помещаем в right[]
-                    right.Add(array[i]);
+                for (int i = leftLength; i <= arrayLength - 1; i++) // Правую половину массива помещаем в right[]
+                { 
+                    right[j] = array[i];
+                    j++;
                 }
 
-                left = MergeSort(left.ToArray()).ToList();
-                right = MergeSort(right.ToArray()).ToList();
+                left = MergeSort(left);
+                right = MergeSort(right);
                 result = Merge(left, right);
 
                 return result.ToArray();
@@ -145,8 +151,10 @@ namespace SortingAlgorithms {
         }
 
 
-        private static List<int> Merge(List<int> left, List<int> right)
+        private static int[] Merge(int[] left_in, int[] right_in)
         {
+            List<int> left = left_in.ToList();
+            List<int> right = right_in.ToList();
             List<int> result = new List<int>();
 
             while (left.Count() > 0 && right.Count() > 0) 
@@ -166,7 +174,7 @@ namespace SortingAlgorithms {
             if (left.Count() > 0) { result.AddRange(left); }
             if (right.Count() > 0) { result.AddRange(right); }
 
-            return result;
+            return result.ToArray();
         }
 
         private static void Swap(int[] array, int i, int j)
