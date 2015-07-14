@@ -8,6 +8,17 @@ namespace SortingAlgorithms {
 
     class Sorting {
 
+        public static int[] TreeSort(int[] array)
+        {
+            int arrayLength = array.Length;
+
+            if (arrayLength > 1) {
+                  
+            }
+
+            return array;
+        }
+
         public static int[] MergeSort(int[] array)
         {
             int arrayLength = array.Length;
@@ -184,5 +195,12 @@ namespace SortingAlgorithms {
             array[i] = array[j];
             array[j] = tmp;
         }
+    }
+
+    private class BinaryTree 
+    {
+        public int Data { get; set; }
+        public BinaryTree Left { get; set; }
+        public BinaryTree Right { get; set; }
     }
 }
